@@ -1,6 +1,9 @@
 <?php
-$categories = ['incident', 'service request', 'problem', 'change', 'request for information'];
-$prioraties = ['low', 'medium', 'critical'];
+
+use App\Models\Ticket;
+
+$categories = Ticket::CATEGORIES;
+$prioraties = Ticket::PRIORATY_LEVELS;
 ?>
 
 <x-layout>
@@ -13,9 +16,6 @@ $prioraties = ['low', 'medium', 'critical'];
             <h1 class="flex text-3xl mb-3 justify-center">Create Ticket</h1>
             <div>
                 <x-select name="category" :options="$categories" class="w-full">Category</x-select>
-                @error('category')
-                <p class="mt-1 text-red-500 text-sm">{{$message}}</p>
-                @enderror
             </div>
             <div>
                 <x-input name="title" class="w-full">Title</x-input>

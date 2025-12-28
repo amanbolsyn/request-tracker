@@ -13,7 +13,9 @@ Route::get('/', function(){
 Route::get('/tickets', [TicketController::class, 'index']);
 Route::get('/ticket/create', [TicketController::class, 'create']);
 Route::post('/ticket', [TicketController::class, 'store']);
-Route::get('/tickets/{ticket}', [TicketController::class, 'show']);
+Route::get('/ticket/{ticket}/edit', [TicketController::class, 'edit']);
+Route::patch('/ticket/{ticket}', [TicketController::class, 'update']);
+Route::get('/ticket/{ticket}', [TicketController::class, 'show']);
 
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);

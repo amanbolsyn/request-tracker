@@ -51,13 +51,28 @@ class TicketController extends Controller
     }
 
     //user cannot edit created ticket
-    public function edit()
+    public function edit(Ticket $ticket)
     {
-        return view('tickets.edit');
+        return view('tickets.edit', ['ticket' => $ticket]);
     }
 
     //user cannot edit created ticket
-    public function update() {}
+    public function update(Ticket $ticket) {
+
+        //validate data
+        $validAttr = request()->validate([
+            'category' => ['required', Rule::in(Ticket::CATEGORIES)],
+            'title' => ['required', 'min:5'],
+            'body' => ['required', 'min:30', 'max:100'],
+            'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
+        ]);
+
+        //update data in db
+        $ticket->update($validAttr);
+
+        //redirect
+        return redirect('/ticket/' . $ticket->id);
+    }
 
     //user cannot delete created ticket
     public function destroy() {}

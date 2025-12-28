@@ -30,7 +30,7 @@ $prioraties = Ticket::PRIORATY_LEVELS;
                 <x-select name="prioraty" :options="$prioraties" class="w-full" value="{{$ticket['prioraty']}}">Prioraty</x-select>
             </div>
             <div class="flex justify-center">
-                <x-formbutton>Save</x-formbutton>
+                <x-formbutton class="m-2">Save</x-formbutton>
             </div>
         </form>
     </div>

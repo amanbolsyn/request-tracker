@@ -9,7 +9,7 @@
             <x-input name="email">Email</x-input>
             <x-input name="password" type="password" >Password</x-input>
             <div class = "flex justify-center">
-                <x-formbutton>Log in</x-formbutton>
+                <x-formbutton class="m-2">Log in</x-formbutton>
             </div>
         </form>
     </div>

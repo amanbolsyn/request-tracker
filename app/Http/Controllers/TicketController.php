@@ -75,5 +75,13 @@ class TicketController extends Controller
     }
 
     //user cannot delete created ticket
-    public function destroy() {}
+    public function destroy(Ticket $ticket) {
+
+        //delete ticker from db
+        $ticket->delete();
+
+        //redirect
+        return redirect("/tickets");
+        
+    }
 }

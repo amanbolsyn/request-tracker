@@ -18,7 +18,7 @@
                  <x-input name="password_conformation" type="password">Confirm Password</x-input>
             </div>
             <div class="flex justify-center">
-                <x-formbutton>Sign up</x-formbutton>
+                <x-formbutton class="m-2">Sign up</x-formbutton>
             </div>
         </form>
     </div>

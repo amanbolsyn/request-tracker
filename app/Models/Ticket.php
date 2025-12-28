@@ -13,7 +13,7 @@ class Ticket extends Model
 
     protected $guarded = [];
 
-    public const CATEGORIES = ['request for information', 'problem', 'incident', 'service request', 'change']; 
+    public const CATEGORIES = ['problem', 'request for information', 'incident', 'service request', 'change']; 
     public  const STATUS_LEVELS = ['new','in progress','completed','rejected'];
     public  const PRIORATY_LEVELS = ['low', 'medium', 'critical'];
 

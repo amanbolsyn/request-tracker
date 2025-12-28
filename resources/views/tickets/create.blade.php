@@ -27,7 +27,7 @@ $prioraties = Ticket::PRIORATY_LEVELS;
                 <x-select name="prioraty" :options="$prioraties" class="w-full">Prioraty</x-select>
             </div>
             <div class="flex justify-center">
-                <x-formbutton>Create</x-formbutton>
+                <x-formbutton class="m-2">Create</x-formbutton>
             </div>
         </form>
     </div>

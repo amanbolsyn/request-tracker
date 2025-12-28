@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Request;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -35,6 +35,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Request::factory(10)->create();
+        Ticket::factory(15)->create();
     }
 }

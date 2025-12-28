@@ -24,7 +24,8 @@
         <nav class="flex justify-center h-[3%]">
             <div class = "flex p-1 pl-2 pr-2 rounded-3xl w-100">
             <div class="flex flex-1">
-                <x-navlink href='/' :active="request()->is('/')">Applications</x-navlink>
+                <x-navlink href='/tickets' :active="request()->is('tickets')">Tickets</x-navlink>
+                <x-navlink href='/ticket/create' :active="request()->is('wticket/create')">Crete Ticket</x-navlink>
             </div>
             <div class="flex justify-end flex-1">
                 @guest

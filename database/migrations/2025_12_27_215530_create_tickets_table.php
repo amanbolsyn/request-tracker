@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class, 'user_id');
             $table->string('title');
             $table->text('body');
             $table->enum('status', ['new','in progress','completed','rejected']);
-            $table->enum('category', ['incident', 'service request', 'problem', 'change', 'request for information']);
+            $table->enum('category', ['Incident', 'Service request', 'Problem', 'Change', 'Request for information']);
             $table->enum('prioraty', ['critical', 'medium', 'low']) ;
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('tickets');
     }
 };

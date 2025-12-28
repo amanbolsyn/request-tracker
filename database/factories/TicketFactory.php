@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,9 +22,9 @@ class TicketFactory extends Factory
             'user_id' => User::factory(),
             'title' => fake()->sentence(5),
             'body' => fake()->paragraph(),
-            'status' => fake()->randomElement(['new','in progress','completed','rejected']),
-            'category' => fake()->randomElement(['incident', 'service request', 'problem', 'change', 'request for information']),
-            'prioraty' => fake()->randomElement(['critical', 'medium', 'low']),
+            'status' => fake()->randomElement(Ticket::STATUS_LEVELS),
+            'category' => fake()->randomElement(Ticket::CATEGORIES),
+            'prioraty' => fake()->randomElement(Ticket::PRIORATY_LEVELS),
         ];
     }
 }

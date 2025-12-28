@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,9 +18,9 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'user_id');
             $table->string('title');
             $table->text('body');
-            $table->enum('status', ['new','in progress','completed','rejected']);
-            $table->enum('category', ['Incident', 'Service request', 'Problem', 'Change', 'Request for information']);
-            $table->enum('prioraty', ['critical', 'medium', 'low']) ;
+            $table->enum('status', Ticket::STATUS_LEVELS)->default('new');
+            $table->enum('category', Ticket::CATEGORIES);
+            $table->enum('prioraty', Ticket::PRIORATY_LEVELS) ;
             $table->timestamps();
         });
     }

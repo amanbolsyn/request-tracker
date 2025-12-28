@@ -11,6 +11,12 @@ class Ticket extends Model
     
     protected $table = 'tickets';
 
+    protected $guarded = [];
+
+    public const CATEGORIES = ['incident', 'service request', 'problem', 'change', 'request for information']; 
+    public  const STATUS_LEVELS = ['new','in progress','completed','rejected'];
+    public  const PRIORATY_LEVELS = ['critical', 'medium', 'low'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -1,13 +1,15 @@
- @props(['name'])
+ @props(['name', 'options'])
 
  <div class="m-2 mb-5">
      <label for={{$name}}>{{$slot}}</label><br>
-     <input
-         autocomplete="off"
-         id="{{$name}}"
-         name="{{$name}}"
-         required
+     <select
+         name={{$name}}
+         id={{$name}}
          {{ $attributes->merge(['class'=>'border-1 rounded-sm p-0.5 pl-1 pr-1'])}}>
+         @foreach($options as $option)
+         <option value={{$option}}>{{$option}}</option>
+         @endforeach
+     </select>
      @error($name)
      <p class="text-red-500 text-sm">{{$message}}</p>
      @enderror

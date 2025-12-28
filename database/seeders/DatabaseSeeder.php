@@ -27,14 +27,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
           User::factory()->create([
-            'first_name' => 'admin',
-            'last_name' => 'admin',
-            'email' => 'admin@example.com',
-            'password' => 'root123',
-            'role' => 'admin'
+            'first_name' => 'Aman',
+            'last_name' => 'Bolsyn',
+            'email' => 'user@example.com',
+            'password' => 'user123',
+            'role' => 'user'
         ]);
 
 
         Ticket::factory(15)->create();
+        Ticket::factory(10)->create([
+            'user_id' => 2, 
+        ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket as Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class TicketController extends Controller
@@ -12,9 +13,16 @@ class TicketController extends Controller
     public function index()
     {
         //validate user
+        $user = Auth::user();
 
-        //get validated user's tickets
-        $tickets = Ticket::latest()->get();
+        if ($user->role !== 'admin') {
+            //get validated user's tickets
+            $tickets = Ticket::where('user_id', Auth::id())->latest()->get();
+        } else {
+            $tickets = Ticket::latest()->get();
+        }
+
+
 
         //load a view
         return view('Tickets.index', ['tickets' => $tickets]);
@@ -40,8 +48,10 @@ class TicketController extends Controller
             'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
         ]);
 
+
+
         //remove after adding auth
-        $validAttr['user_id'] = 3;
+        $validAttr['user_id'] = Auth::id();
 
         //save into db
         Ticket::create($validAttr);
@@ -57,7 +67,8 @@ class TicketController extends Controller
     }
 
     //user cannot edit created ticket
-    public function update(Ticket $ticket) {
+    public function update(Ticket $ticket)
+    {
 
         //validate data
         $validAttr = request()->validate([
@@ -75,13 +86,13 @@ class TicketController extends Controller
     }
 
     //user cannot delete created ticket
-    public function destroy(Ticket $ticket) {
+    public function destroy(Ticket $ticket)
+    {
 
         //delete ticker from db
         $ticket->delete();
 
         //redirect
         return redirect("/tickets");
-        
     }
 }

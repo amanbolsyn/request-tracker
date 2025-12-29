@@ -1,12 +1,12 @@
 <?php
 
 use App\Models\Ticket;
+use Illuminate\Support\Facades\Auth;
 
 $categories = Ticket::CATEGORIES;
 $prioraties = Ticket::PRIORATY_LEVELS;
+$status = Ticket::STATUS_LEVELS;
 
-
-// dd($ticket);
 ?>
 <x-layout>
     <x-slot:title>
@@ -26,8 +26,15 @@ $prioraties = Ticket::PRIORATY_LEVELS;
             <div>
                 <x-textarea name="body" class="w-full" value="{{$ticket['body']}}">Description</x-textarea>
             </div>
-            <div>
-                <x-select name="prioraty" :options="$prioraties" class="w-full" value="{{$ticket['prioraty']}}">Prioraty</x-select>
+            <div class="flex flex-row">
+                <div class="flex-1">
+                    <x-select name="prioraty" :options="$prioraties" class="w-full" selected="{{$ticket['prioraty']}}">Prioraty</x-select>
+                </div>
+                @can('admin', Auth::user())
+                <div class="flex-1">
+                    <x-select name="status" :options="$status" class="w-full" value="{{$ticket['status']}}">Status</x-select>
+                </div>
+                @endcan
             </div>
             <div class="flex justify-center">
                 <x-formbutton class="m-2">Save</x-formbutton>

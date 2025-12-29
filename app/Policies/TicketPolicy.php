@@ -34,7 +34,13 @@ class TicketPolicy
      */
     public function create(User $user): bool
     {
+
+        if(! $user->isAdmin()){
+            return true;
+        } 
+
         return false;
+
     }
 
     /**
@@ -42,7 +48,7 @@ class TicketPolicy
      */
     public function update(User $user, Ticket $ticket): bool
     {
-        //if user is not admin check is user is authorized to update each model
+        //if user is not an admin check is user is authorized to update each model
         if(! $user->isAdmin()){
             return $ticket->user->is($user);
         }

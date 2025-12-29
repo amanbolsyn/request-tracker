@@ -21,7 +21,7 @@ class TicketFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => fake()->sentence(5),
-            'body' => fake()->paragraph(),
+            'body' => fake()->paragraph(4),
             'status' => fake()->randomElement(Ticket::STATUS_LEVELS),
             'category' => fake()->randomElement(Ticket::CATEGORIES),
             'prioraty' => fake()->randomElement(Ticket::PRIORATY_LEVELS),

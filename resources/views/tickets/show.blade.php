@@ -15,17 +15,18 @@
             </div>
             <h2><b>{{$ticket['category']}}: {{$ticket['title']}}</b></h2><br>
             <p>{{$ticket['body']}}</p>
-
             <div class="flex justify-between mt-2">
                 <form method="GET" action="/ticket/{{$ticket->id}}/edit">
                     <x-formButton>Edit</x-formButton>
                 </form>
 
+             @can('user', Auth::user())
                 <form method="POST" action="/ticket/{{$ticket->id}}">
                     @csrf
                     @method('DELETE')
                     <x-formButton>Delete</x-formButton>
                 </form>
+            @endcan
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@ class RegisterController extends Controller
         $validAttr = request()->validate([
            'first_name' => ['required', 'min:2'],
            'last_name' => ['required', 'min:2'],
-            'email' => ['required','email', 'max:50'], 
+            'email' => ['required','email', 'max:50' ,'unique:users'], 
             'password' => ['required', Password::min(5)->letters()->numbers(), 'confirmed'], 
         ]);
 

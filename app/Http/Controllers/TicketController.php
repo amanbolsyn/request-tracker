@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Ticket as Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Can;
 
 class TicketController extends Controller
 {
@@ -77,6 +79,13 @@ class TicketController extends Controller
             'body' => ['required', 'min:30', 'max:100'],
             'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
         ]);
+
+
+        if(Gate::allows('admin', Auth::user())){
+          $validAttr = request()->validate([
+             'status' => ['required', Rule::in(Ticket::STATUS_LEVELS)],
+          ]);
+        }
 
         //update data in db
         $ticket->update($validAttr);

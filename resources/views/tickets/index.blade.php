@@ -5,7 +5,7 @@
     <h1 class="flex justify-center text-3xl m-10 mt-15">Your Tickets</h1>
 
     @foreach($tickets as $ticket)
-    <a href="/ticket/{{$ticket['id']}}"> 
+    <a href="/ticket/{{$ticket['id']}}">
         <div class="flex justify-center m-5">
             <div class="inline-block border-1 rounded-xl w-[40%] p-5 hover:scale-[1.02] hover:cursor-pointer ">
                 <div class="flex mb-2">

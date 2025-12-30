@@ -72,19 +72,22 @@ class TicketController extends Controller
     public function update(Ticket $ticket)
     {
 
-        //validate data
-        $validAttr = request()->validate([
-            'category' => ['required', Rule::in(Ticket::CATEGORIES)],
-            'title' => ['required', 'min:5'],
-            'body' => ['required', 'min:30', 'max:100'],
-            'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
-        ]);
+        if (Gate::allows('user', Auth::user())) {
+            //validate data
+            $validAttr = request()->validate([
+                'category' => ['required', Rule::in(Ticket::CATEGORIES)],
+                'title' => ['required', 'min:5'],
+                'body' => ['required', 'min:30', 'max:100'],
+                'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
+            ]);
+        }
 
 
-        if(Gate::allows('admin', Auth::user())){
-          $validAttr = request()->validate([
-             'status' => ['required', Rule::in(Ticket::STATUS_LEVELS)],
-          ]);
+        if (Gate::allows('admin', Auth::user())) {
+            //validate data
+            $validAttr = request()->validate([
+                'status' => ['required', Rule::in(Ticket::STATUS_LEVELS)],
+            ]);
         }
 
         //update data in db

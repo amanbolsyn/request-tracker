@@ -8,15 +8,19 @@
     <a href="/ticket/{{$ticket['id']}}">
         <div class="flex justify-center m-5">
             <div class="inline-block border-1 rounded-xl w-[40%] p-5 hover:scale-[1.02] hover:cursor-pointer ">
-                <div class="flex mb-2">
-                    <div class="flex flex-1">
-                        <p class="p-[0.4rem] pb-[0.1rem] pt-[0.1rem] text-md rounded-md {{PrioratyColor($ticket['prioraty'])}}"><b>{{$ticket['prioraty']}}</b></p>
+                <div class="flex justify-between mb-2">
+
+                    <div class="flex">
+                        <p class="p-[0.4rem] pb-[0.1rem] pt-[0.1rem] mr-3 rounded-md {{StatusColor($ticket['status'])}}">{{$ticket['status']}}</p>
+                        <p class="p-[0.4rem] pb-[0.1rem] pt-[0.1rem] rounded-md {{PrioratyColor($ticket['prioraty'])}}"><b>{{$ticket['prioraty']}}</b></p>
                     </div>
-                    <div class="flex flex-1 justify-end">
-                        <p class="p-[0.4rem] pb-[0.1rem] pt-[0.1rem]  rounded-md {{StatusColor($ticket['status'])}}">{{$ticket['status']}}</p>
+
+                    <div class="flex">
+                        <p class="mr-3"><i>{{date('d/m/y', strToTime($ticket['created_at']))}}</i></p>
+                        <p>{{$ticket->user->first_name}} {{$ticket->user->last_name}}</p>
                     </div>
                 </div>
-                <h2><b>{{$ticket['category']}}: {{$ticket['title']}}</b></h2><br>
+                <h2 class="mb-2"><b>{{$ticket['category']}}: {{$ticket['title']}}</b></h2>
                 <p>{{$ticket['body']}}</p>
             </div>
         </div>

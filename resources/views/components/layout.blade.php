@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-[100%]" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="h-fit min-h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +19,8 @@
             </style>
         @endif
     </head>
-    <body class="h-full">
-        <main class="h-full">
-        <nav class="flex justify-center h-[3%]">
+    <body class="h-fit min-h-screen">
+        <nav class="flex justify-center h-[5vh]">
             <div class = "flex p-1 pl-2 pr-2 rounded-3xl w-100">
             <div class="flex flex-1">
                 <x-navlink href='/tickets' :active="request()->is('tickets')">Tickets</x-navlink>
@@ -43,7 +42,9 @@
             </div>
             </div>
         </nav>
+        <main class="h-fit min-h-[90vh] flex flex-col">
         {{$slot}}
         </main>
+        <footer class="h-[5vh] flex justify-center">Created by <a class="underline hover:no-underline"  href="https://github.com/amanbolsyn">Aman Nurgozhiyev</a></footer>
     </body>
 </html>

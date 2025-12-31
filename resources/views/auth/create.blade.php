@@ -2,7 +2,7 @@
     <x-slot:title>
         Sign up
     </x-slot:title>
-    <div class="flex justify-center items-center h-[97%]">
+    <div class="flex justify-center items-center  h-[90vh]">
         <form method="POST" action="/register" class="border-1 p-7 pt-5 pb-5 w-min rounded-xl">
             @csrf
             <h1 class="flex text-3xl mb-3 justify-center">Sign up</h1>

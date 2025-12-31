@@ -2,7 +2,7 @@
     <x-slot:title>
         Log in
     </x-slot:title>
-    <div class="flex justify-center items-center h-[97%]">
+    <div class="flex items-center justify-center h-[90vh] ">
         <form method="POST" action="/login" class="border-1 inline-block p-10 pt-5 pb-5 rounded-xl w-95">
             @csrf
             <h1 class="flex justify-center text-2xl">Log in</h1>

@@ -19,9 +19,9 @@ class TicketController extends Controller
 
         if ($user->role !== 'admin') {
             //get validated user's tickets
-            $tickets = Ticket::where('user_id', Auth::id())->with('user')->latest()->get();
+            $tickets = Ticket::where('user_id', Auth::id())->with('user')->latest()->simplePaginate(10);
         } else {
-            $tickets = Ticket::latest()->get();
+            $tickets = Ticket::with('user')->latest()->simplePaginate(10);
         }
 
 

@@ -10,7 +10,7 @@ $prioraties = Ticket::PRIORATY_LEVELS;
     <x-slot:title>
         Create Ticket
     </x-slot:title>
-    <div class="flex justify-center items-center h-[97%]">
+    <div class="flex justify-center items-center  h-[90vh]">
         <form method="POST" action="/ticket" class="border-1 p-7 pt-5 pb-5 rounded-xl w-[35%]">
             @csrf
             <h1 class="flex text-3xl mb-3 justify-center">Create Ticket</h1>

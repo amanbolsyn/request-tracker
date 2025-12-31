@@ -9,9 +9,9 @@ $status = Ticket::STATUS_LEVELS;
     <x-slot:title>
         Ticket
     </x-slot:title>
-    <h1 class="flex justify-center text-3xl m-10 mt-15">Ticket</h1>
+    <h1 class="flex justify-center text-3xl m-10 mb-5">Ticket</h1>
     <div class="flex justify-center m-5">
-        <div class="inline-block border-1 rounded-xl w-[40%] p-5 ">
+        <div class="inline-block content-center border-1 rounded-xl w-[40%] p-5 ">
             <div class="flex justify-between mb-2">
                 <div class="flex">
 

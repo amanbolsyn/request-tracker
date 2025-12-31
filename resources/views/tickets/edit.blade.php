@@ -11,7 +11,7 @@ $prioraties = Ticket::PRIORATY_LEVELS;
     <x-slot:title>
         Edit Ticket
     </x-slot:title>
-    <div class="flex justify-center items-center h-[97%]">
+    <div class="flex justify-center items-center  h-[90vh]">
       @can('user', Auth::user())
         <form method="POST" action="/ticket/{{$ticket->id}}" class="border-1 p-7 pt-5 pb-5 rounded-xl w-[35%]">
             @csrf

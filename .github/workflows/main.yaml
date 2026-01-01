@@ -1,21 +1,31 @@
-name: 
-
-run-name: 
+name: Build, Test and Deploy
 
 on:
-  push: 
-    branches: 
-      - dev 
+  push:
+    branches:
+      - dev
 
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
 
-    steps:
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -23,27 +33,28 @@ jobs:
           php-version: 8.4
           tools: composer
 
-      - name: Check PHP version
-        run: php -v
-
       - name: Install Composer dependencies
-        run: composer install
-
+        run: composer install --no-interaction --prefer-dist
 
       - name: Prepare Laravel environment
         run: |
-             cp .env.example .env
-             php artisan key:generate
+          cp .env.example .env
+          php artisan key:generate
+          sed -i 's/DB_HOST=.*/DB_HOST=127.0.0.1/' .env
+          sed -i 's/DB_DATABASE=.*/DB_DATABASE=laravel/' .env
+          sed -i 's/DB_USERNAME=.*/DB_USERNAME=root/' .env
+          sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=root/' .env
 
+      - name: Wait for MySQL
+        run: |
+          sudo apt-get install -y mysql-client
+          until mysql -h 127.0.0.1 -u root -proot -e "SELECT 1"; do
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
+
+      - name: Run migrations
+        run: php artisan migrate --force
 
       - name: Run tests
         run: php artisan test
-
-      
-      - name: Force migrate db
-        run: php artisan migrate --force 
-
-
-      - name: List files
-        run: ls -la
-

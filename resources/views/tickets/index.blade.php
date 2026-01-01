@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="flex">
-                        <p class="mr-3"><i>{{date('d/m/y', strToTime($ticket['created_at']))}}</i></p>
-                        <p>{{$ticket->user->first_name}} {{$ticket->user->last_name}}</p>
+                        <p class="mr-3">{{$ticket->user->first_name}} {{$ticket->user->last_name}}</p>
+                        <p ><i>{{date('d/m/y', strToTime($ticket['created_at']))}}</i></p>
                     </div>
                 </div>
                 <h2 class="mb-2"><b>{{$ticket['category']}}: {{$ticket['title']}}</b></h2>

@@ -45,6 +45,6 @@
         <main class="h-fit min-h-[90vh] flex flex-col">
         {{$slot}}
         </main>
-        <footer class="h-[5vh] flex justify-center">Created by <a class="underline hover:no-underline"  href="https://github.com/amanbolsyn">Aman Nurgozhiyev</a></footer>
+        <footer class="h-[5vh] flex justify-center">Created by <a target="_blank" class="underline hover:no-underline"  href="https://github.com/amanbolsyn">Aman Nurgozhiyev</a></footer>
     </body>
 </html>

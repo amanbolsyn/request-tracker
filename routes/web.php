@@ -24,7 +24,7 @@ Route::post('/ticket', [TicketController::class, 'store'])
 
 Route::get('/ticket/{ticket}/edit', [TicketController::class, 'edit'])
     ->middleware('auth')
-    ->can('update', 'ticket');
+    ->can('edit', 'ticket');
 
 Route::patch('/ticket/{ticket}', [TicketController::class, 'update'])
     ->middleware('auth')
@@ -44,3 +44,4 @@ Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth'
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store']);
+

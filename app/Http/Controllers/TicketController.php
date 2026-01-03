@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket as Ticket;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Can;
 
 class TicketController extends Controller
 {
@@ -16,18 +14,37 @@ class TicketController extends Controller
     {
         //validate user
         $user = Auth::user();
+        $query =  Ticket::query()->with('user');
 
+        $filters = request()->validate([
+            'category' => [Rule::in(Ticket::CATEGORIES)],
+            'status' => [Rule::in(Ticket::STATUS_LEVELS)],
+            'prioraty' => [Rule::in(Ticket::PRIORATY_LEVELS)],
+        ]);
+
+        //apply user restrictions
         if ($user->role !== 'admin') {
-            //get validated user's tickets
-            $tickets = Ticket::where('user_id', Auth::id())->with('user')->latest()->simplePaginate(10);
-        } else {
-            $tickets = Ticket::with('user')->latest()->simplePaginate(10);
+            $query->where('user_id', Auth::id());
         }
 
+        // apply filters
+        if (!empty($filters['category'])) {
+            $query->where('category', $filters['category']);
+        }
 
+        if (!empty($filters['status'])) {
+            $query->where('status', $filters['status']);
+        }
+
+        if (!empty($filters['prioraty'])) {
+            $query->where('prioraty', $filters['prioraty']);
+        }
+
+        //querying the db 
+        $tickets = $query->latest()->simplePaginate(10)->withQueryString();
 
         //load a view
-        return view('Tickets.index', ['tickets' => $tickets]);
+        return view('Tickets.index', ['tickets' => $tickets, 'filters' => $filters]);
     }
 
     public function show(Ticket $ticket)

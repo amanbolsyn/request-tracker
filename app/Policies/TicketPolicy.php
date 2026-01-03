@@ -21,7 +21,7 @@ class TicketPolicy
     public function view(User $user, Ticket $ticket): bool
     {
         //if user is not admin check is user is authorized to see each model
-        if(! $user->isAdmin()){
+        if (! $user->isAdmin()) {
             return $ticket->user->is($user);
         }
 
@@ -35,26 +35,34 @@ class TicketPolicy
     public function create(User $user): bool
     {
 
-        if(! $user->isAdmin()){
+        if (! $user->isAdmin()) {
             return true;
-        } 
+        }
 
         return false;
-
     }
 
     /**
      * Determine whether the user can update the model.
      */
+
     public function update(User $user, Ticket $ticket): bool
     {
-        //if user is not an admin check is user is authorized to update each model
-        if(! $user->isAdmin()){
+        if (! $user->isAdmin()) {
             return $ticket->user->is($user);
         }
 
-        //admin can view update model
         return true;
+    }
+
+    public function edit(User $user, Ticket $ticket): bool
+    {
+        //if user is not an admin check is user is authorized to update each model
+        if (! $user->isAdmin()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -62,7 +70,7 @@ class TicketPolicy
      */
     public function delete(User $user, Ticket $ticket): bool
     {
-         return $ticket->user->is($user);
+        return $ticket->user->is($user);
     }
 
     /**

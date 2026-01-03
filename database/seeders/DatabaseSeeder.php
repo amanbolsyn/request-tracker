@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Ticket::factory(15)->create();
-        Ticket::factory(10)->create([
+        Ticket::factory(100)->create();
+        Ticket::factory(20)->create([
             'user_id' => 2, 
         ]);
     }

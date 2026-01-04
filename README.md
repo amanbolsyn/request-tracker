@@ -25,17 +25,27 @@ Create local env file
 copy .env.example .env
 ```
 
-Run the composer
+Run the docker container
 ```bash
-composer run dev
+./vendor/bin/sail up
 ```
 
 Create application key and migrate and seed db
 ```bash
-php artisan key:generate
-php artisan migrate:fresh --seed
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate:fresh --seed
 ```
 
+Stopping the laravel sail
+```bash
+./vendor/bin/sail stop
+```
+
+Taiking down and building up the laravel sail
+```bash
+./vendor/bin/sail down
+./vendor/bin/sail build --no-cache
+```
 
 ## Application Endpoints 
 

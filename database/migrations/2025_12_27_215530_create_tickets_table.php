@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class, 'user_id');
             $table->string('title');
-            $table->text('body');
+            $table->text('description');
             $table->enum('status', Ticket::STATUS_LEVELS)->default('new');
             $table->enum('category', Ticket::CATEGORIES);
             $table->enum('prioraty', Ticket::PRIORATY_LEVELS) ;

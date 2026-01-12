@@ -38,7 +38,7 @@ $status = Ticket::STATUS_LEVELS;
 
             </div>
             <h2 class="mb-2 text-lg"><b>{{$ticket['category']}}: {{$ticket['title']}}</b></h2>
-            <p class="mb-3">{{$ticket['body']}}</p>
+            <p class="mb-3">{{$ticket['description']}}</p>
 
             @can('user', Auth::user())
             <div class="flex justify-between">

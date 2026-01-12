@@ -15,19 +15,19 @@ $prioraties = Ticket::PRIORATY_LEVELS;
             @csrf
             <h1 class="flex text-3xl mb-3 justify-center">Create Ticket</h1>
             <div class="p-2">
-                <x-label>Category</x-label>
+                <x-label for="category">Category</x-label>
                 <x-select name="category" :options="$categories" class="w-full" :selected="old('category')">Category</x-select>
             </div>
             <div class="p-2">
-                <x-label>Title</x-label>
+                <x-label for="title">Title</x-label>
                 <x-input name="title" class="w-full" :value="old('title')">Title</x-input>
             </div class="p-2">
             <div class="p-2">
-                <x-label>Description</x-label>
-                <x-textarea name="body" class="w-full" :value="old('body')">Description</x-textarea>
+                <x-label for="description">Description</x-label>
+                <x-textarea name="description" class="w-full" :value="old('description')">Description</x-textarea>
             </div>
             <div class="p-2" > 
-                <x-label>Prioraty</x-label>
+                <x-label for="prioraty">Prioraty</x-label>
                 <x-select name="prioraty" :options="$prioraties" class="w-full" :selected="old('prioraty')">Prioraty</x-select>
             </div>
             <div class="flex justify-center">

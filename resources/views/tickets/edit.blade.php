@@ -26,8 +26,8 @@ $prioraties = Ticket::PRIORATY_LEVELS;
                 <x-input name="title" class="w-full" value="{{$ticket['title']}}">Title</x-input>
             </div>
             <div class = "p-2">
-                <label for="body">Description</label>
-                <x-textarea name="body" class="w-full" value="{{$ticket['body']}}">Description</x-textarea>
+                <label for="description">Description</label>
+                <x-textarea name="description" class="w-full" value="{{$ticket['description']}}">Description</x-textarea>
             </div>
             <div class = "p-2">
                 <label for="prioraty">Prioraty</label>

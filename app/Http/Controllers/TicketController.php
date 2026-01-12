@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TicketPosted;
 use App\Models\Ticket as Ticket;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class TicketController extends Controller
@@ -63,17 +65,21 @@ class TicketController extends Controller
         $validAttr = request()->validate([
             'category' => ['required', Rule::in(Ticket::CATEGORIES)],
             'title' => ['required', 'min:5'],
-            'body' => ['required', 'min:30', 'max:100'],
+            'description' => ['required', 'min:30', 'max:100'],
             'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
         ]);
-
 
 
         //remove after adding auth
         $validAttr['user_id'] = Auth::id();
 
         //save into db
-        Ticket::create($validAttr);
+        $ticket = Ticket::create($validAttr);
+
+        //send email to the user 
+        Mail::to($ticket->user)->send(
+            new TicketPosted($ticket)
+        );
 
         //redirect 
         return redirect('/tickets');
@@ -94,7 +100,7 @@ class TicketController extends Controller
             $validAttr = request()->validate([
                 'category' => ['required', Rule::in(Ticket::CATEGORIES)],
                 'title' => ['required', 'min:5'],
-                'body' => ['required', 'min:30', 'max:100'],
+                'description' => ['required', 'min:30', 'max:100'],
                 'prioraty' => ['required', Rule::in(Ticket::PRIORATY_LEVELS)]
             ]);
         }

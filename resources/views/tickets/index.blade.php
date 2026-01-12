@@ -40,7 +40,7 @@ $status = Ticket::STATUS_LEVELS;
     @foreach($tickets as $ticket)
     <div class="flex justify-center ">
         <a href="/ticket/{{$ticket['id']}}" class="mb-5 w-[40%]">
-            <div class="inline-block border-1 rounded-xl p-5 hover:scale-[1.02] hover:cursor-pointer ">
+            <div class="inline-block border-1 rounded-xl p-5 hover:scale-[1.02] hover:cursor-pointer w-[100%]">
                 <div class="flex justify-between mb-2">
                     <div class="flex">
                         <p class="p-[0.4rem] pb-[0.1rem] pt-[0.1rem] mr-3 rounded-md {{StatusColor($ticket['status'])}}">{{$ticket['status']}}</p>
@@ -53,7 +53,7 @@ $status = Ticket::STATUS_LEVELS;
                     </div>
                 </div>
                 <h2 class="mb-2"><b>{{$ticket['category']}}: {{$ticket['title']}}</b></h2>
-                <p>{{$ticket['body']}}</p>
+                <p>{{$ticket['description']}}</p>
             </div>
         </a>
     </div>

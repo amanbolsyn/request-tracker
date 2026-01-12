@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\MailJob;
 use App\Mail\TicketPosted;
 use App\Models\Ticket as Ticket;
 use Illuminate\Support\Facades\Auth;
@@ -77,9 +78,7 @@ class TicketController extends Controller
         $ticket = Ticket::create($validAttr);
 
         //send email to the user 
-        Mail::to($ticket->user)->send(
-            new TicketPosted($ticket)
-        );
+        MailJob::dispatch($ticket);
 
         //redirect 
         return redirect('/tickets');
